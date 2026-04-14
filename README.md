@@ -1,6 +1,8 @@
 # Loki-based Logging System for AWS
 
-This project implements a cost-effective, scalable logging solution for AWS using Loki, Fluent Bit, and Grafana. It replaces CloudWatch Logs with a more efficient alternative that addresses the pain points of expensive ingestion, limited cross-service search, and lack of custom tagging.
+Logging solution for Ematiq-test
+
+> ⚠️ Disclaimer: Github Copilot was used while making this project
 
 ## 🎯 Goals
 
@@ -76,8 +78,8 @@ Log Sources → Fluent Bit Collectors → Loki Distributor → Ingesters → S3 
    cp terraform/dev.tfvars terraform/local.tfvars  # optional, using dev defaults
    ```
 
-   - Update `terraform/variables.tf` with your AWS account, region, VPC CIDRs, and Loki configuration.
-   - Update `terraform/backend.tf` with your S3 backend bucket, key path, DynamoDB lock table, and region.
+   - Update `terraform/variables.tf` with AWS account, region, VPC CIDRs, and Loki configuration.
+   - Update `terraform/backend.tf` with S3 backend bucket, key path, DynamoDB lock table, and region.
 
 2. **Validate configuration:**
    ```bash
@@ -238,13 +240,6 @@ Key settings in `terraform/modules/loki/user-data.sh`:
 - Loki self-monitoring via Prometheus (optional)
 - Log ingestion rates and query performance
 
-## 🤝 Contributing
-
-1. Follow Terraform best practices
-2. Test changes in dev environment
-3. Update documentation
-4. Create pull requests with clear descriptions
-
 ## 📝 Notes
 
 - This is a template implementation - customize variables for your environment
@@ -252,13 +247,3 @@ Key settings in `terraform/modules/loki/user-data.sh`:
 - Consider backup strategies for DynamoDB index
 - Test failover scenarios in production
 - Document runbooks for common operations
-
-## ❓ Questions & Considerations
-
-- **AWS Region**: Which region for deployment?
-- **Retention Period**: How long to keep logs? (Current: 30 days)
-- **Authentication**: Basic auth vs. IAM vs. mTLS?
-- **Domain**: Custom domain for Grafana?
-- **Monitoring**: Prometheus for Loki metrics?
-- **Backup**: S3 cross-region replication?
-- **Migration**: Gradual migration from CloudWatch Logs?
